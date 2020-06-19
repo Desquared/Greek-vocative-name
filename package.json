@@ -1,0 +1,50 @@
+{
+  "name": "@desquared/greek-vocative-name",
+  "version": "1.0.0",
+  "description": "A tiny JS library that returns a Greek name in vocative case.",
+  "source": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.min.js",
+  "devDependencies": {
+    "@babel/core": "7.10.2",
+    "@babel/preset-env": "7.10.2",
+    "babel-jest": "26.0.1",
+    "eslint": "7.2.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "jest": "26.0.1",
+    "microbundle": "0.12.1",
+    "prettier": "2.0.5"
+  },
+  "scripts": {
+    "dev": "microbundle watch",
+    "build": "microbundle --sourcemap false --compress false --name greekVocativeName -f es,cjs,umd",
+    "postbuild": "eslint --fix ./dist",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "lint": "eslint src tests"
+  },
+  "keywords": [
+    "greek",
+    "library",
+    "vocative",
+    "case",
+    "string",
+    "utilities"
+  ],
+  "author": "Makis Kallivokas <kallivokas@thinkdesquared.com>",
+  "license": "MIT",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Desquared/greek-vocative-name.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Desquared/greek-vocative-name/issues"
+  },
+  "homepage": "https://github.com/Desquared/greek-vocative-name#readme"
+}
