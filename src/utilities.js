@@ -8,16 +8,6 @@ export function isGreekVowelWithIntonation(char) {
   return includesChar(char, vowels);
 }
 
-export function isGreekSigma(char) {
-  const set = 'σς';
-  return includesChar(char, set);
-}
-
-export function isRuleEligible(char) {
-  const set = 'οό';
-  return includesChar(char, set);
-}
-
 export function isRuleExclution(char, syllabusCount) {
   const set = 'νρ';
   return syllabusCount > 2 && includesChar(char, set);
