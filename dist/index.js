@@ -74,6 +74,10 @@ function getVocativeName(text) {
         return 'Μανολιό';
       }
 
+      if (text === 'Μανωλιός') {
+        return 'Μανωλιό';
+      }
+
       return text.substring(0, text.length - 2) + 'έ';
 
     default:
