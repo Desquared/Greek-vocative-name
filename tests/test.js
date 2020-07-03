@@ -1,12 +1,20 @@
-import getVocativeName from '../src/index';
+import {getVocativeName} from '../src/index';
 
 describe('get vocative name', () => {
   test('returns Μάκη when given Μάκης', () => {
     expect(getVocativeName('Μάκης')).toBe('Μάκη');
   });
 
+  test('returns Κοσμά when given Κοσμάς', () => {
+    expect(getVocativeName('Κοσμάς')).toBe('Κοσμά');
+  });
+
   test('returns Κώστα when given Κώστας', () => {
     expect(getVocativeName('Κώστας')).toBe('Κώστα');
+  });
+
+  test('returns Θοδωρή when given Θοδωρής', () => {
+    expect(getVocativeName('Θοδωρής')).toBe('Θοδωρή');
   });
 
   test('returns Γιάννη when given Γιάννης', () => {
@@ -17,12 +25,20 @@ describe('get vocative name', () => {
     expect(getVocativeName('Πέτρος')).toBe('Πέτρο');
   });
 
+  test('returns Νίκο when given Νίκος', () => {
+    expect(getVocativeName('Νίκος')).toBe('Νίκο');
+  });
+
   test('returns Στυλιανέ when given Στυλιανός', () => {
     expect(getVocativeName('Στυλιανός')).toBe('Στυλιανέ');
   });
 
   test('returns Στέλιο when given Στέλιος', () => {
     expect(getVocativeName('Στέλιος')).toBe('Στέλιο');
+  });
+
+  test('returns Ευαγγελάτο when given Ευαγγελάτος', () => {
+    expect(getVocativeName('Ευαγγελάτος')).toBe('Ευαγγελάτο');
   });
 
   test('returns Ιωσήφ when given Ιωσήφ', () => {
@@ -49,6 +65,7 @@ describe('get vocative name', () => {
     expect(getVocativeName('Πλάτωνας')).toBe('Πλάτωνα');
   });
 
+  // Είναι επίσης σωστό και το Παύλε - έχει δυο κλητικές
   test('returns Παύλο when given Παύλος', () => {
     expect(getVocativeName('Παύλος')).toBe('Παύλο');
   });
@@ -65,8 +82,16 @@ describe('get vocative name', () => {
     expect(getVocativeName('Δημήτριος')).toBe('Δημήτριε');
   });
 
-  test('returns Δημητρό when given Δημητρό', () => {
-    expect(getVocativeName('Δημητρό')).toBe('Δημητρό');
+  test('returns Δημητρό when given Δημητρός', () => {
+    expect(getVocativeName('Δημητρός')).toBe('Δημητρό');
+  });
+
+  test('returns Αντωνάκο when given Αντωνάκος', () => {
+    expect(getVocativeName('Αντωνάκος')).toBe('Αντωνάκο');
+  });
+
+  test('returns Σέργιε when given Σέργιος', () => {
+    expect(getVocativeName('Σέργιος')).toBe('Σέργιε');
   });
 
   test('returns Παπαδόπουλε when given Παπαδόπουλος', () => {
