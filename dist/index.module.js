@@ -6,14 +6,6 @@ function isGreekVowelWithIntonation(char) {
   const vowels = 'άέήίύόώ';
   return includesChar(char, vowels);
 }
-function isGreekSigma(char) {
-  const set = 'σς';
-  return includesChar(char, set);
-}
-function isRuleEligible(char) {
-  const set = 'οό';
-  return includesChar(char, set);
-}
 function isRuleExclution(char, syllabusCount) {
   const set = 'νρ';
   return syllabusCount > 2 && includesChar(char, set);
@@ -31,57 +23,61 @@ function isNotEmptyString(text) {
   return typeof text === 'string' && text.length > 0;
 }
 
-function getVocativeName(rawText) {
-  if (!isNotEmptyString(rawText)) {
-    return rawText;
+function getVocativeName(text) {
+  if (!isNotEmptyString(text)) {
+    return text;
   }
 
-  let res = '';
-  rawText = rawText.toLowerCase();
-  rawText = rawText.substring(0, 1).toUpperCase() + rawText.substring(1);
   let syllabusCount = 0;
-  let tonosPoint = -1;
+  let tonosPoint = -1; // capitalise first letter
 
-  if (rawText.length > 2) {
-    if (isGreekSigma(rawText.charAt(rawText.length - 1))) {
-      if (isRuleEligible(rawText.charAt(rawText.length - 2))) {
-        for (let i = 0; i < rawText.length; i++) {
-          if (isGreekVowel(rawText.charAt(i))) {
-            syllabusCount++;
-          }
+  text = text.toLowerCase();
+  text = text.substring(0, 1).toUpperCase() + text.substring(1);
 
-          if (isGreekVowelWithIntonation(rawText.charAt(i))) {
-            tonosPoint = syllabusCount;
-          }
-        }
-      } else {
-        //το ας γίνεται α ή το ης γίνεται η
-        res = rawText.substring(0, rawText.length - 1);
+  switch (text.substring(text.length - 2)) {
+    case 'άς':
+    case 'ας':
+    case 'ής':
+    case 'ης':
+      return text.substring(0, text.length - 1);
+
+    case 'ος':
+      // Γνωστές εξαιρέσεις
+      if (text === 'Στέλιος') {
+        return 'Στέλιο';
       }
-    } else {
-      res = rawText;
-    }
-  }
 
-  if (tonosPoint > 0) {
-    if (
-      tonosPoint === syllabusCount ||
-      syllabusCount - tonosPoint > 1 ||
-      isRuleExclution(rawText.charAt(rawText.length - 3), syllabusCount)
-    ) {
-      //το ος γίνεται ε
-      res = rawText.substring(0, rawText.length - 2) + 'ε';
-    } else {
-      //το ος γίνεται ο
-      res = rawText.substring(0, rawText.length - 2) + 'ο';
-    }
-  }
+      for (let i = 0; i < text.length; i++) {
+        if (isGreekVowel(text.charAt(i))) {
+          syllabusCount++;
+        }
 
-  if (isNotEmptyString(res)) {
-    return res;
-  } else {
-    //Not supported for now...
-    return rawText;
+        if (isGreekVowelWithIntonation(text.charAt(i))) {
+          tonosPoint = syllabusCount;
+        }
+      }
+
+      if (syllabusCount - tonosPoint > 1 || isRuleExclution(text.charAt(text.length - 3), syllabusCount)) {
+        //το ος γίνεται ε
+        return text.substring(0, text.length - 2) + 'ε';
+      } //το ος γίνεται ο
+
+      return text.substring(0, text.length - 2) + 'ο';
+
+    case 'ός':
+      // Γνωστές εξαιρέσεις (οξύτονα χαϊδευτικά βαφτιστικά ονόματα)
+      if (text === 'Δημητρός') {
+        return 'Δημητρό';
+      }
+
+      if (text === 'Μανολιός') {
+        return 'Μανολιό';
+      }
+
+      return text.substring(0, text.length - 2) + 'έ';
+
+    default:
+      return text;
   }
 }
 
