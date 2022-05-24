@@ -1,6 +1,6 @@
 {
   "name": "@desquared/greek-vocative-name",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A tiny JS library that returns a Greek name in vocative case.",
   "source": "src/index.js",
   "main": "dist/index.js",
