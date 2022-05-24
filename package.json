@@ -6,6 +6,9 @@
   "main": "dist/index.js",
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.min.js",
+  "files": [
+    "./dist"
+  ],
   "devDependencies": {
     "@babel/core": "7.10.2",
     "@babel/preset-env": "7.10.2",
